@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>SS_Selenium_Mod</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SeleniteSeaCore">
+      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniteSeaEditor">
+      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniteSeaExecutor">
+      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaExecutor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
