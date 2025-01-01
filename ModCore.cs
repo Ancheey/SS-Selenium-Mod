@@ -10,6 +10,10 @@ using SeleniteSeaEditor.controls.Displays;
 using SeleniteSeaEditor.controls.Editors;
 using SeleniteSeaEditor.modding;
 using SS_Selenium_Mod.Actions;
+using System.IO;
+using SeleniteSeaCore.variables;
+using SS_Selenium_Mod.Comparators;
+using SS_Selenium_Mod.Editors;
 
 namespace SS_Selenium_Mod
 {
@@ -22,14 +26,28 @@ namespace SS_Selenium_Mod
         public override string Version => "0.1";
 
         public override string Author => "Ancheey";
+        public override void OnLoad()
+        {
+            if (!Directory.Exists(ExeCore.LocalDirectory + @"\dependencies\webdriver\"))
+                Directory.CreateDirectory(ExeCore.LocalDirectory + @"\dependencies\webdriver\");
+            if(!File.Exists(ExeCore.LocalDirectory + @"\dependencies\webdriver\chromedriver.exe"))
+            {
+                throw new Exception("No chromedriver found in the /dependencies/webdriver folder! go to https://developer.chrome.com/docs/chromedriver/downloads and download one for your chrome version");
+            }
 
+            Comparers.Register<ComparatorCheckCurrentWebsiteLink>();
+            Comparers.Register<ComparatorDoesElementWithIDContainText>();
+            Comparers.Register<ComparatorIsElementWithIDDisplayed>();
+        }
         public override void OnRegisterActions()
         {
-            EditorRegistry.RegisterAction<ActionOpenPage>(new("Open Page", "Opens a webpage with specified an URL", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
-            EditorRegistry.RegisterAction<ActionRefresh>(new("Refresh Page", "Refreshes the current webpage", typeof(DisplaySSBlock), null, Editable: false));
-            EditorRegistry.RegisterAction<ActionForward>(new("Browser Forward", "Orders the browser to move forward specified amount of times", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
-            EditorRegistry.RegisterAction<ActionBack>(new("Browser Back", "Orders the browser to move back specified amount of times", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
-            Debug.Log(StatusCode.Success, $"Selenium support v{Version} loaded", null);
+            EditorRegistry.RegisterAction<ActionOpenPage>(new("(Web) Open Page", "Opens a webpage with specified an URL", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
+            EditorRegistry.RegisterAction<ActionRefresh>(new("(Web) Refresh Page", "Refreshes the current webpage", typeof(DisplaySSBlock), null, Editable: false));
+            EditorRegistry.RegisterAction<ActionForward>(new("(Web) Browser Forward", "Orders the browser to move forward specified amount of times", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
+            EditorRegistry.RegisterAction<ActionBack>(new("(Web) Browser Back", "Orders the browser to move back specified amount of times", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
+            EditorRegistry.RegisterAction<ActionGetContentBy>(new("(Web) Get Content", "Gets the content of a web element", typeof(DisplaySSBlock), typeof(EditorActionBaseForWebSelector)));
+            EditorRegistry.RegisterAction<ActionClickElement>(new("(Web) Click Element", "Clicks a web element", typeof(DisplaySSBlock), typeof(EditorActionBaseForWebSelector)));
+            EditorRegistry.RegisterAction<ActionExecuteJavaScript>(new("(Web) Execute JS", "Execute a JavaScript script", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
         }
 
         public override void OnRegisterExecutor()
@@ -38,7 +56,6 @@ namespace SS_Selenium_Mod
             TypeRegistry.RegisterType<ActionRefresh>();
             TypeRegistry.RegisterType<ActionForward>();
             TypeRegistry.RegisterType<ActionBack>();
-            Debug.Log(StatusCode.Success, $"Selenium support v{Version} loaded", null);
         }
         public override void AfterExecution()
         {

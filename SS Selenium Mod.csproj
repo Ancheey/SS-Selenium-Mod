@@ -18,15 +18,14 @@
       <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaCore.dll</HintPath>
     </Reference>
     <Reference Include="SeleniteSeaEditor">
-      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaEditor.dll</HintPath>
+      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Debug\net8.0-windows\SeleniteSeaEditor.dll</HintPath>
     </Reference>
     <Reference Include="SeleniteSeaExecutor">
-      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Release\net8.0-windows\SeleniteSeaExecutor.dll</HintPath>
+      <HintPath>..\SeleniteSea\SeleniteSeaEditor\bin\Debug\net8.0-windows\SeleniteSeaExecutor.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Editors\" />
     <Folder Include="webdrivers\" />
   </ItemGroup>
 

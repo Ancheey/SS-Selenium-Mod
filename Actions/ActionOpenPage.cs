@@ -19,12 +19,13 @@ namespace SS_Selenium_Mod.Actions
 
         public override void DeserializeAndApplyMetadata(params string[] args)
         {
-            PublicValues["Link"].Data = args[0];
+            PublicValues["URL"].Data = args[0];
         }
 
         public override bool Execute(ExecutionData data)
         {
-            SeleniumEngine.Driver.Navigate().GoToUrl(PublicValues["URL"].GetInterpolatedValue(data.RuntimeVariables));
+            string link = PublicValues["URL"].GetInterpolatedValue(data.RuntimeVariables);
+            SeleniumEngine.Driver.Navigate().GoToUrl(link);
             return true;
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SS_Selenium_Mod.Actions
 {
-    public class ActionBack : SSBlockActionBasic
+    public class ActionBack : ActionBaseForWebSelector
     {
         public ActionBack()
         {
@@ -29,7 +29,7 @@ namespace SS_Selenium_Mod.Actions
 
             for (double j = 0; j < i; j++)
                 SeleniumEngine.Driver.Navigate().Back();
-
+             
             return true;
         }
 

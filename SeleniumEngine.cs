@@ -16,8 +16,8 @@ namespace SS_Selenium_Mod
         {
             get
             {
-                _driver ??= new ChromeDriver(ExeCore.LocalDirectory + "/mods/webdrivers");
-                return Driver;
+                _driver ??= new ChromeDriver(ExeCore.LocalDirectory + @"\Dependencies\webdriver");
+                return _driver;
             }
         }
         public static void Dispose() => _driver?.Dispose();
