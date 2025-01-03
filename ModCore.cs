@@ -48,6 +48,7 @@ namespace SS_Selenium_Mod
             EditorRegistry.RegisterAction<ActionGetContentBy>(new("(Web) Get Content", "Gets the content of a web element", typeof(DisplaySSBlock), typeof(EditorActionBaseForWebSelector)));
             EditorRegistry.RegisterAction<ActionClickElement>(new("(Web) Click Element", "Clicks a web element", typeof(DisplaySSBlock), typeof(EditorActionBaseForWebSelector)));
             EditorRegistry.RegisterAction<ActionExecuteJavaScript>(new("(Web) Execute JS", "Execute a JavaScript script", typeof(DisplaySSBlock), typeof(EditorSSBlockActionBasic)));
+            EditorRegistry.RegisterAction<ActionInput>(new("(Web) Input Text", "Input text into a field as if clicked on a keyboard", typeof(DisplaySSBlock), typeof(EditorActionBaseForWebSelector)));
         }
 
         public override void OnRegisterExecutor()
@@ -56,6 +57,10 @@ namespace SS_Selenium_Mod
             TypeRegistry.RegisterType<ActionRefresh>();
             TypeRegistry.RegisterType<ActionForward>();
             TypeRegistry.RegisterType<ActionBack>();
+            TypeRegistry.RegisterType<ActionGetContentBy>();
+            TypeRegistry.RegisterType<ActionClickElement>();
+            TypeRegistry.RegisterType<ActionExecuteJavaScript>();
+            TypeRegistry.RegisterType<ActionInput>();
         }
         public override void AfterExecution()
         {
